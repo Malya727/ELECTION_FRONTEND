@@ -1,0 +1,14 @@
+.spinner-cl {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+h3 {
+    text-align: center;
+    text-shadow: 2px 2px orange;
+}

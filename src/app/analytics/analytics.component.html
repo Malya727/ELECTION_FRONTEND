@@ -1,0 +1,58 @@
+<div class="container">
+    <br/>
+    <div class="row">
+        <div class="col-md-6" (change)="getState($event)">
+            <select class="form-control">
+                <option value = "">-- Select State --</option>
+                <option *ngFor = "let state of states">{{state}}</option>
+            </select>
+        </div>
+        <div class="col-md-6" (change)="getConstituency($event)">
+            <select class="form-control">
+                <option value = "">-- Select Constituency --</option>
+                <option *ngFor = "let c of constituency">{{c}}</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="spinner-border spinner-cl" role="status" *ngIf = "spinner">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-cl" role="status" *ngIf = "error_msg">
+            <h1>Data Not Found</h1>
+        </div>
+        <div class="col-md-7" *ngIf="candidate_details && candidate_details.length >0">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Candidate Name</th>
+                        <th scope="col">Party</th>
+                        <th scope="col">EVM Votes</th>
+                        <th scope="col">Postal Votes</th>
+                        <th scope="col">Total Votes</th>
+                        <th scope="col">Vote Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let candidate_d of candidate_details">
+                        <td>{{candidate_d.Candidate}}</td>
+                        <td>{{candidate_d.Party}}</td>
+                        <td>{{candidate_d.EVM}}</td>
+                        <td>{{candidate_d.Postal}}</td>
+                        <td>{{candidate_d.Total}}</td>
+                        <td>{{candidate_d.VotePercentage}}%</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <div *ngIf="pieChart">
+                <google-chart [data]="pieChart"></google-chart>
+            </div>
+            <br/>
+            <h3 *ngIf="pieChart">Winner is : {{winner_candidate_name}}</h3>
+        </div>
+    </div>
+</div>
